@@ -9,5 +9,18 @@
  * 2. 设置一个索引idx，记录`popV`（出栈序列）栈顶的位置
  * 3. 将`pushV`（压入顺序）中的数据依次入栈
  * 4. 当辅助栈栈顶元素和压`popV`栈顶元素相同时，辅助栈出栈。每次出栈索引`idx+1`
- * 5. 出栈有可能在任意一次入栈后进行，当辅助栈栈顶元素和压`popV`栈顶元素相同时，继续让`pushV`入辅助栈
  */
+function IsPopOrder(pushV, popV)
+{
+    // write code here
+    var stack = []//辅助栈
+    var index = 0//此时出栈序列 popV 的栈顶
+    for (var i = 0;i < pushV.length;i++) {
+        stack.push(pushV[i])
+        while (stack.length > 0 && stack[stack.length - 1] == popV[index]) {
+            stack.pop()
+            index++
+        }
+    }
+    return stack.length == 0 ? true : false
+}
